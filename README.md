@@ -34,3 +34,7 @@ The second component of the assignment is to make a simple JDBC driver for your 
 - 0 - code has no comments and is hard to read
 - 1 - code has some comments, is mostly indented, and has a readable style
 - 2 - code demonstrates professional quality comments and style
+
+## Submission
+
+The lab can be marked immediately by the professor or TA by showing the output of the JUnit tests and by a quick code review.  Otherwise, submit the URL of your GitHub repository on Canvas. **Make sure to commit and push your updates to GitHub.**
