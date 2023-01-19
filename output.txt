@@ -42,6 +42,7 @@ Select one of these options:
   X - Exit application
 Your choice: 2
 Please enter the key to locate the record: 8
+ProductID       ProductName     SupplierID      CategoryID
 8       Northwoods Cranberry Sauce      3       2
 
 
