@@ -12,7 +12,7 @@ The first step is to complete the `TableHandler.java` file that performs the act
 - `readAll()` - to read and print out all records (2 marks)
 - `findRecord(String key)` - to find a specific record with the specified key and output the record (5 marks)
 - `findStartOfRecord(String key)` - may be helpful to find a specific record and return the byte offset into the file of this record from the start of the file (marks are included with findRecord)
-- `insertRecord(String record)` - to add a new record to the text file in the proper format (2 marks)
+- `insertRecord(String record)` - to add a new record to the text file in the proper format. Insert puts the record at the end of the file. (2 marks)
 - `deleteRecord(String key)` - to find a specific record with the specified key and remove the record from the text file (3 marks)
 - `updateRecord(String key, int col, String value)` - to locate record with key and update the specified column with the new value. (6 marks)
 
@@ -34,6 +34,24 @@ The second component of the assignment is to make a simple JDBC driver for your 
 - 0 - code has no comments and is hard to read
 - 1 - code has some comments, is mostly indented, and has a readable style
 - 2 - code demonstrates professional quality comments and style
+
+### Java File API References
+
+- [Java RandomAccessFile](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/RandomAccessFile.html)
+- [RandomAccessFile readFully() method](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/RandomAccessFile.html#readFully(byte%5B%5D))
+
+## Hints
+- When using a `RandomAccessFile` make sure you know your current location in the file. If you are not sure, use the `seek()` method to position to a given location. In this assignment, you may need to position to the start `raFile.seek(0)` or the end `raFile.seek(raFile.length())` of the file. To get the current location in the file, use `raFile.getFilePointer()`.
+- The `RandomAccessFile` is a text file, so you can read a row as one entire line using `raFile.readLine()`. Note `trim()` may be handy to remove the end-of-line character.
+- `StringTokenizer` is useful for dividing up the row represented as a tab-separated string.
+- Leave `updateRecord()` to the end. It is the hardest.
+- When doing an update or delete, the general strategy is simple:
+   * Find and read the record to update/delete.
+   * Use `readFully()` to read the rest of the file into a byte array.
+   * With update, write the updated record starting at its previous spot. Then write the rest of the buffered file.
+   * With delete, write the rest of the buffered file stored in the byte array to where the record being deleted started.
+   * In both cases, make sure to set the file length (`raFile.setLength()`) properly. Otherwise, you may have junk characters at the end of your file.
+   * Note: This is not efficient, but it does illustrate the motivation for using blocks to avoid this shifting.
 
 ## Submission
 
