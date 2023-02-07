@@ -52,6 +52,8 @@ The second component of the assignment is to make a simple JDBC driver for your 
    * With delete, write the rest of the buffered file stored in the byte array to where the record being deleted started.
    * In both cases, make sure to set the file length (`raFile.setLength()`) properly. Otherwise, you may have junk characters at the end of your file.
    * Note: This is not efficient, but it does illustrate the motivation for using blocks to avoid this shifting.
+- The JDBC classes should use the `TableHandler` to do the insert, delete, and select queries.
+
 
 ## Submission
 
